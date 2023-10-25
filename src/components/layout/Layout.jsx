@@ -1,15 +1,15 @@
-import { Outlet } from "react-router-dom";
-import Footer from "../footer/Footer";
-import Header from "../header/Header";
-
-export default function Layout() {
+import { Fragment } from "react"
+import { Outlet } from "react-router-dom"
+import Header from '../header/Header'
+const Layout = () => {
   return (
-    <div>
-        <Layout>
-        <Header/>
-        <Outlet/>
-        <Footer/>
-        </Layout>
-    </div>
+        <Fragment>
+            <Header/>
+            <main className="container">
+                <Outlet/>   
+            </main>
+        </Fragment>
   )
 }
+
+export default Layout;

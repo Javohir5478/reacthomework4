@@ -1,7 +1,7 @@
 import {Routes,Route} from "react-router-dom"
 
-import Footer from './components/footer/Footer'
-import Header from './components/header/Header'
+// import Footer from './components/footer/Footer'
+// import Header from './components/header/Header'
 import HomePage from './pages/HomePage'
 import SavatPage from  './pages/SavatPage'
 import ProductsPage from  './pages/ProductsPage'
@@ -17,13 +17,15 @@ function App() {
 
   return (
     <>
-    <HomePage/>
+    {/* <HomePage/> */}
       <Routes>
-        <Route  element={<Layout/>}>
-          <Route path="/" element={<HomePage/>}/>
-           <Route path="/fav" element={<FavouritePage/>}/>
-            <Route path="/products" element={<ProductsPage/>}/>
-             <Route path="/savat" element={<SavatPage/>}/>
+        <Route>
+          <Route  path="/"  element={<Layout/>}>
+          <Route path="" element={<HomePage/>}/>
+           <Route path="fav" element={<FavouritePage/>}/>
+            <Route path="products" element={<ProductsPage/>}/>
+             <Route path="savat" element={<SavatPage/>}/>
+             </Route>
         </Route>
       </Routes>
       {/* <h1>salom</h1> */}
