@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import {Routes,Route} from "react-router-dom"
+import {Routes,Route, useNavigate} from "react-router-dom"
 
 
 import HomePage from './pages/HomePage'
@@ -11,11 +11,13 @@ import FavouritePage from  './pages/FavouritePage'
 
 import './App.css'
 import Layout from "./components/layout/Layout"
-import LoginPage from "./pages/LoginPage"
 import { useEffect, useState } from "react"
 import getStore from "./utils/GetStore/getStore"
 import { uid } from "uid"
 import AddProduct from "./components/card/AddProduct"
+import LoginPage from "./pages/Login/LoginPage"
+import ProtectedPage from "./pages/Login/ProtectedPage"
+// import AdminPage from "./pages/Login/AdminPage"
 
 
 
@@ -24,9 +26,11 @@ import AddProduct from "./components/card/AddProduct"
 function App() {
 
  const [list,setList] = useState(getStore("list"));
+//  const [user, setUser] = useState(getStore("user"))
   // const[title, setTitle] = useState('');
   const [price,setPrice] = useState('');
   const[name,setName] = useState ('');
+  const navigate = useNavigate();
  
   const [liked,setLiked] = useState(getStore("liked"));
   const [basket,setBasket] = useState(getStore("basket"));
@@ -35,7 +39,15 @@ function App() {
   const image= "https://loremflickr.com/640/480/food";
 
 
+//  const handleSubmit = (e) =>{
+//   e.preventDefault();
+//   const newItem={name:user};
+//   setUser([...user,newItem]);
+//   if (user) {
+//     return navigate("/protected");
+//   }
 
+//  }
 
 function handleAdd (e) {
     e.preventDefault();
@@ -72,7 +84,9 @@ const handleBasket =(id) => {
   localStorage.setItem("liked", JSON.stringify(liked))
   localStorage.setItem("basket", JSON.stringify(basket))
   localStorage.setItem("list", JSON.stringify(list))
- },[liked, basket,list]);
+  // localStorage.setItem("user", JSON.stringify(user))
+
+ },[liked, basket,list]); //user
  
 
   return (
@@ -81,7 +95,15 @@ const handleBasket =(id) => {
       <Routes>
         <Route>
  
-          <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/login" element={<LoginPage />}/>
+
+{/* 
+             <Route path="/admin" element={
+              <ProtectedPage user={user}>
+                <AdminPage/>
+              </ProtectedPage>
+             }/> */}
+
           
           <Route  path="/"  element={<Layout/>}>
              
@@ -107,6 +129,7 @@ const handleBasket =(id) => {
               
 
              <Route path="" element={<HomePage/>}/>
+             <Route path="protected" element={<ProtectedPage/>}/>
              <Route path="savat" element={<SavatPage basket={basket}/>}/>
              <Route path="fav" element={<FavouritePage liked={liked}/>}/>
 

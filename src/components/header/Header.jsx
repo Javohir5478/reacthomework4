@@ -9,7 +9,6 @@ export default function Header() {
          <img className="menu" src="/menu.png" alt="" />   
          <input  type="text" placeholder="search products.." />
          <Link to="/"> <h4>home</h4></Link>
-         <Link to="/add"> <h4>add</h4></Link>
         <Link to="/fav"> <h4>favourite</h4> </Link>
        <Link to="/products">  <h4>Products</h4>  </Link>
        <Link to="/savat">  <h4>Basket</h4> </Link>

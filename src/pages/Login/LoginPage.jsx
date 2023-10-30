@@ -1,14 +1,22 @@
-
-import { Button, Checkbox, Form, Input } from 'antd';
+/* eslint-disable react/prop-types */
+import {useNavigate} from 'react-router-dom';
+import { Button, Form, Input } from 'antd';
 const onFinish = (values) => {
   console.log('Success:', values);
 };
 const onFinishFailed = (errorInfo) => {
   console.log('Failed:', errorInfo);
 };
-const LoginPage = () => (
-    <div className='login_container'>
+
+
+
+function LoginPage ({user,setUser,handleSubmit}){
+const navigate = useNavigate();
+return (
+
+    <div className='login_container justify-content:center'  >
   <Form className='justify-content:center'
+  
     name="basic"
     labelCol={{
       span: 8,
@@ -29,6 +37,8 @@ const LoginPage = () => (
     <Form.Item
       label="Username"
       name="username"
+      value={user.name}
+      onChange={(e) => setUser(e.target.value)}
       rules={[
         {
           required: true,
@@ -38,42 +48,23 @@ const LoginPage = () => (
     >
       <Input />
     </Form.Item>
-
-    <Form.Item
-      label="Password"
-      name="password"
-      rules={[
-        {
-          required: true,
-          message: 'Please input your password!',
-        },
-      ]}
-    >
-      <Input.Password />
-    </Form.Item>
-
-    <Form.Item
-      name="remember"
-      valuePropName="checked"
-      wrapperCol={{
-        offset: 8,
-        span: 16,
-      }}
-    >
-      <Checkbox>Remember me</Checkbox>
-    </Form.Item>
-
     <Form.Item
       wrapperCol={{
         offset: 8,
         span: 16,
       }}
     >
-      <Button type="primary" htmlType="submit">
+      <Button 
+      onSubmit={handleSubmit}
+      type="primary"
+       htmlType="submit"
+       onClick={navigate('/admin')}
+       >
+        
         Submit
       </Button>
     </Form.Item>
   </Form>
-  </div>
-);
+  </div>)
+}
 export default LoginPage;
