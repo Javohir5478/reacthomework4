@@ -202,3 +202,37 @@
     color: #E5FFDE;
     background-color: #70C05B;
 }
+
+.products_container{
+    margin-top: 20px;
+    padding-left: 100px;
+border:5px solid #fff;
+display: flex;
+gap:100px;
+
+
+.btn_add{
+    color: #70C05B;
+        display: flex;
+        width: 50px;
+        height: 20px;
+        padding: 8px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 4px;
+        background: var(--main-secondary-muted, #3715cc);
+}
+.btn_add:hover {
+    color: #E5FFDE;
+    background-color: #70C05B;
+}
+
+
+
+    img {
+            width: 50px;
+            height: 50px;
+        }
+
+}

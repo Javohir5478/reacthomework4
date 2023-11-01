@@ -31,6 +31,7 @@ function App() {
   const [price,setPrice] = useState('');
   const[name,setName] = useState ('');
   const navigate = useNavigate();
+  const[initialItems,setInitialItems] = useState([]);
  
   const [liked,setLiked] = useState(getStore("liked"));
   const [basket,setBasket] = useState(getStore("basket"));
@@ -64,6 +65,15 @@ function handleAdd (e) {
       setName('');
       setPrice('');
     }
+  }
+
+  const handleDelete = (id) =>{
+       const newItem= list.filter((item) => item.id!== id );
+       setList(newItem);
+  }
+  const handleEdit =(id) =>{
+    const EditItem = list.find((item) => item.id=== id )
+    setInitialItems([...list])
   }
 
 
@@ -122,8 +132,10 @@ const handleBasket =(id) => {
             <Route path="products" element={
             <ProductsPage 
                 list={list}
+                handleDelete={handleDelete}
                 handleBasket={handleBasket}
                 handleLiked={handleLiked}
+                initialItems={initialItems}
               />}/>
 
               
